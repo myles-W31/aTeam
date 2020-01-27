@@ -13,6 +13,9 @@ public class characterMovement : MonoBehaviour
     public KeyCode left;
     public KeyCode right;
     public KeyCode jump;
+    public KeyCode leftAlt;
+    public KeyCode rightAlt;
+    public KeyCode jumpAlt;
     public KeyCode attack;
 
     public Rigidbody2D thePlayerRB;
@@ -76,14 +79,14 @@ public class characterMovement : MonoBehaviour
         */
 
         // walking right, left, or standing still
-        if (Input.GetKey(right))
+        if (Input.GetKey(right)||Input.GetKey(rightAlt))
         {
             thePlayerRB.velocity = new Vector3(moveSpeed, thePlayerRB.velocity.y, 0f);
             transform.localScale = new Vector3(.25f, .25f, .25f);
             facingRight = true;
             facingLeft = false;
         }
-        else if (Input.GetKey(left))
+        else if (Input.GetKey(left)||Input.GetKey(leftAlt))
         {
             thePlayerRB.velocity = new Vector3(-moveSpeed, thePlayerRB.velocity.y, 0f);
             transform.localScale = new Vector3(-.25f, .25f, .25f);
@@ -96,7 +99,7 @@ public class characterMovement : MonoBehaviour
         }
 
         // jumping
-        if ((Input.GetKeyDown(jump)) && isGrounded)
+        if (((Input.GetKeyDown(jump))||Input.GetKeyDown(jumpAlt)) && isGrounded)
         {
             thePlayerRB.velocity = new Vector3(thePlayerRB.velocity.x, jumpSpeed, 0f);
         }
