@@ -8,7 +8,7 @@ public class LevelLoader : MonoBehaviour
 
     List<string> chunkList;
     List<string> loadedChunkList;
-    string baseAdd;
+    string baseAdd = "Assets/LevelFiles/Chunk";
     int cChunknum;
 
 
