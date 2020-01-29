@@ -14,7 +14,7 @@ public class manager : MonoBehaviour
     public bool respawnCoActive;
     public float waitToRespawn;
 
-    GameObject LevelLoader;
+    LevelLoader LevelLoader;
 
     // Start is called before the first frame update
     void Start()

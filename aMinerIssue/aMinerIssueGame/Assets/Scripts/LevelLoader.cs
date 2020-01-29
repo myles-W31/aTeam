@@ -8,9 +8,11 @@ public class LevelLoader : MonoBehaviour
 
     List<string> chunkList;
     List<string> loadedChunkList;
-    string baseAdd;
+    string baseAdd = "Assets/LevelFiles/Chunk";
     int cChunknum;
 
+
+    public string CurrentChunk { get { return loadedChunkList[cChunknum]; } set { loadedChunkList[cChunknum] = value; } }
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,8 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+        //alter the text chunk to fit what happens in the game
+        
     }
 
     //reads file and loads chunk according to file contents
