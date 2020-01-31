@@ -14,6 +14,8 @@ public class manager : MonoBehaviour
     public bool respawnCoActive;
     public float waitToRespawn;
 
+    public GameObject dirt;
+
     LevelLoader LevelLoader;
 
     // Start is called before the first frame update
@@ -22,6 +24,19 @@ public class manager : MonoBehaviour
         theCharacterMovement = FindObjectOfType<characterMovement>();
         theEnemyMovement = FindObjectOfType<enemyMovement>();
         LevelLoader = FindObjectOfType<LevelLoader>();
+
+        SpriteRenderer dirtdim = dirt.GetComponent<SpriteRenderer>();
+        for (int i = 0; i<10;i++)
+        {
+            for(int j = 0; j < 10; j++)
+            {
+                Vector3 pos = dirt.transform.position;
+                pos.x = dirtdim.size.x * i;
+                pos.y = dirtdim.size.y * j;
+                Instantiate(dirt,pos, Quaternion.identity);
+            }
+        }
+
     }
 
     // Update is called once per frame

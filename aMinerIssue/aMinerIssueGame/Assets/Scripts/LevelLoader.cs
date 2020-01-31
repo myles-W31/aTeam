@@ -10,6 +10,7 @@ public class LevelLoader : MonoBehaviour
     List<string> loadedChunkList;
     string baseAdd = "Assets/LevelFiles/Chunk";
     int cChunknum;
+    public GameObject dirt;
 
 
     public string CurrentChunk { get { return loadedChunkList[cChunknum]; } set { loadedChunkList[cChunknum] = value; } }
