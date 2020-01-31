@@ -42,13 +42,13 @@ public class manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(theEnemyMovement.theEnemy != null)
+        /*if(theEnemyMovement.theEnemy != null)
         {
             if (theEnemyMovement.enemyHealth <= 0)
             {
                 Instantiate(enemyExplosion, theEnemyMovement.theEnemy.transform.position, theEnemyMovement.theEnemy.transform.rotation);
             }
-        }
+        }*/
 
         if (theCharacterMovement.playerHealth <= 0 && !respawning)
         {
