@@ -123,7 +123,7 @@ public class characterMovement : MonoBehaviour
     {
         if (facingRight)
         {
-            var attackInst = Instantiate(attackRB, new Vector3(thePlayerRB.position.x, thePlayerRB.position.y, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+            var attackInst = Instantiate(attackRB, new Vector3(thePlayerRB.position.x + 0.5f, thePlayerRB.position.y, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
             attackInst.velocity = new Vector2(attackSpeed, 0);
             Physics2D.IgnoreCollision(attackInst.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             shotRight = true;
@@ -131,7 +131,7 @@ public class characterMovement : MonoBehaviour
         }
         else if (facingLeft)
         {
-            var attackInst = Instantiate(attackRB, new Vector3(thePlayerRB.position.x, thePlayerRB.position.y, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+            var attackInst = Instantiate(attackRB, new Vector3(thePlayerRB.position.x - 0.5f, thePlayerRB.position.y, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
             attackInst.velocity = new Vector2(-attackSpeed, 0);
             Physics2D.IgnoreCollision(attackInst.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             shotRight = false;
