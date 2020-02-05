@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class dirtboom : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float lifeTime;
+
+    // Use this for initialization
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Destroy( 0.5f);
+        lifeTime = lifeTime - Time.deltaTime;
+
+        if (lifeTime <= 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 }

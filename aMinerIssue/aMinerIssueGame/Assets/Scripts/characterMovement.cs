@@ -79,14 +79,14 @@ public class characterMovement : MonoBehaviour
         if (Input.GetKey(right)||Input.GetKey(rightAlt))
         {
             thePlayerRB.velocity = new Vector3(moveSpeed, thePlayerRB.velocity.y, 0f);
-            transform.localScale = new Vector3(.25f, .25f, .25f);
+            transform.localScale = new Vector3(2f, 2f, 2f);
             facingRight = true;
             facingLeft = false;
         }
         else if (Input.GetKey(left)||Input.GetKey(leftAlt))
         {
             thePlayerRB.velocity = new Vector3(-moveSpeed, thePlayerRB.velocity.y, 0f);
-            transform.localScale = new Vector3(-.25f, .25f, .25f);
+            transform.localScale = new Vector3(-2f, 2f, 2f);
             facingRight = false;
             facingLeft = true;
         }
