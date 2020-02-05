@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2146176815333585042}
   - component: {fileID: -8067773147995987324}
   m_Layer: 8
-  m_Name: DirtBlock 2.0
+  m_Name: GoldBlock
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: db9fadf5f3679a94d9552ee54e86e856, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2812ca450edc53b448a1438d42ec0a95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
