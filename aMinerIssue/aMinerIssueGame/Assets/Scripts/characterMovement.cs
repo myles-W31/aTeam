@@ -43,12 +43,14 @@ public class characterMovement : MonoBehaviour
 
     public bool canShoot;
     public bool canPickUpObject;
+    public bool canDig;
 
     public bool shotLeft;
     public bool shotRight;
 
     public GameObject diggingProjectile;
     public bool isBeingHeld;
+    public Animator myAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +74,7 @@ public class characterMovement : MonoBehaviour
         playerHealth = maxPlayerHealth;
 
         canShoot = true;
+        canDig = true;
         canPickUpObject = false;
         isBeingHeld = false;
 
@@ -113,18 +116,22 @@ public class characterMovement : MonoBehaviour
             BasicAttack();
             StartCoroutine(ShootDelay());
             canShoot = false;
+            canDig = false;
             //StartCoroutine(ShootDelay());
         }
 
-        if (canShoot)
+        if (canDig)
         {
             if (Input.GetMouseButton(0))
             {
                 isBeingHeld = true;
+                canShoot = false;
+                canDig = true;
             }
             if (Input.GetMouseButtonUp(0))
             {
                 isBeingHeld = false;
+                canShoot = true;
             }
 
             if (isBeingHeld)
@@ -140,6 +147,8 @@ public class characterMovement : MonoBehaviour
 
         // check if player is on ground constantly
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+
+        myAnim.SetBool("canShoot", canShoot);
     }
 
     IEnumerator ShootDelay()
@@ -175,6 +184,7 @@ public class characterMovement : MonoBehaviour
             Debug.Log("pick up");
             Destroy(collision.gameObject);
             canShoot = true;
+            canDig = true;
             canPickUpObject = false;
         }
         else if (collision.tag == "Pickaxe" && canPickUpObject == false)
