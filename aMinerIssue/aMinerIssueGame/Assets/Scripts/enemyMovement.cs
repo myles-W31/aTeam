@@ -11,6 +11,11 @@ public class enemyMovement : MonoBehaviour
     public GameObject pointB;
     bool moveRight;
 
+
+    public Transform leftPoint;
+    public Transform rightPoint;
+    public bool movingRight;
+
     public Rigidbody2D enemyRigid;
     public float moveSpeed;
 
@@ -33,13 +38,23 @@ public class enemyMovement : MonoBehaviour
         {
             Destroy(theEnemy.gameObject);
             Instantiate(theManager.enemyExplosion, theEnemy.transform.position, theEnemy.transform.rotation);
-        }
+        }       
 
+        if(this.gameObject.transform.position.x >= pointB.transform.position.x && this.gameObject.transform.position.x <= pointA.transform.position.x)
+        {
+            Debug.Log("going left");
+            enemyRigid.velocity = new Vector3(-moveSpeed, enemyRigid.velocity.y, 0f);
+        }
+        else if (this.gameObject.transform.position.x <= pointA.transform.position.x)
+        {
+            Debug.Log("going right");
+            enemyRigid.velocity = new Vector3(moveSpeed, enemyRigid.velocity.y, 0f);
+        }
         //if moveRight is false, move to point A
         if (moveRight == false)
         {
             enemyRigid.velocity = new Vector3(-moveSpeed, enemyRigid.velocity.y, 0f);
-            transform.localScale = new Vector3(.5f, .5f, .5f);
+            transform.localScale = new Vector3(4f, 4f, 4f);
         }
         //check Location
         turnRight(transform.position, pointA.transform.position, pointB.transform.position);
@@ -47,7 +62,7 @@ public class enemyMovement : MonoBehaviour
         if (moveRight == true)
         {
             enemyRigid.velocity = new Vector3(moveSpeed, enemyRigid.velocity.y, 0f);
-            transform.localScale = new Vector3(-.5f, .5f, .5f);
+            transform.localScale = new Vector3(-4f, 4f, 4f);
         }
     }
 
