@@ -31,7 +31,7 @@ public class LevelGoalScript : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            int index = Random.Range(1, 3);
+            int index = Random.Range(1, 4);
             //theManager.mainScore = theManager.mainScore + theCharacterMovement.score;
             PlayerPrefs.SetInt("Player Score", theManager.mainScore);
 
@@ -43,11 +43,11 @@ public class LevelGoalScript : MonoBehaviour
             {
                 SceneManager.LoadScene(levelToLoad2);
             }
-            /*else if (index == 3)
+            else if (index == 3)
             {
                 SceneManager.LoadScene(levelToLoad3);
             }
-            else if (index == 4)
+            /*else if (index == 4)
             {
                 SceneManager.LoadScene(levelToLoad4);
             }*/
