@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - DiggingPickaxe
   - DigCircle
+  - Goal
   layers:
   - Default
   - TransparentFX
