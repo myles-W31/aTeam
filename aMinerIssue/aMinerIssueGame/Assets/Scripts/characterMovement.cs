@@ -141,7 +141,7 @@ public class characterMovement : MonoBehaviour
             StartCoroutine(ShootDelay());
             canShoot = false;
             canDig = false;
-            //StartCoroutine(ShootDelay());
+            StartCoroutine(ShootDelay());
         }
 
         if (canDig)
@@ -179,7 +179,13 @@ public class characterMovement : MonoBehaviour
 
     IEnumerator ShootDelay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(5f);
+
+        /*Debug.Log("pick up");
+        Destroy(diggingProjectile);
+        canShoot = true;
+        canDig = true;
+        canPickUpObject = false;*/
     }
 
     private void BasicAttack()
