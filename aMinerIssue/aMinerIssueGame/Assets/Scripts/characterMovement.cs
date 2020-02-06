@@ -88,6 +88,7 @@ public class characterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(isWalking);
         // walking right, left, or standing still
         if (Input.GetKey(right)||Input.GetKey(rightAlt))
         {
@@ -95,7 +96,14 @@ public class characterMovement : MonoBehaviour
             transform.localScale = new Vector3(2f, 2f, 2f);
             facingRight = true;
             facingLeft = false;
-            isWalking = true;
+            if(isGrounded)
+            {
+                isWalking = true;
+            }
+            if(!isGrounded)
+            {
+                isWalking = false;
+            }
         }
         else if (Input.GetKey(left)||Input.GetKey(leftAlt))
         {
@@ -103,7 +111,14 @@ public class characterMovement : MonoBehaviour
             transform.localScale = new Vector3(-2f, 2f, 2f);
             facingRight = false;
             facingLeft = true;
-            isWalking = true;
+            if (isGrounded)
+            {
+                isWalking = true;
+            }
+            if (!isGrounded)
+            {
+                isWalking = false;
+            }
         }
         else
         {
@@ -115,6 +130,7 @@ public class characterMovement : MonoBehaviour
         if (((Input.GetKeyDown(jump))||Input.GetKeyDown(jumpAlt)) && isGrounded)
         {
             thePlayerRB.velocity = new Vector3(thePlayerRB.velocity.x, jumpSpeed, 0f);
+            isWalking = false;
         }
 
         // attacking
