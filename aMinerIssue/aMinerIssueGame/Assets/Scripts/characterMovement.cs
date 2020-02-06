@@ -116,23 +116,26 @@ public class characterMovement : MonoBehaviour
             //StartCoroutine(ShootDelay());
         }
 
-        if (Input.GetMouseButton(0))
+        if (canShoot)
         {
-            isBeingHeld = true;
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            isBeingHeld = false;
-        }
+            if (Input.GetMouseButton(0))
+            {
+                isBeingHeld = true;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                isBeingHeld = false;
+            }
 
-        if (isBeingHeld)
-        {
-            //Instantiate(diggingProjectile, this.transform.position, this.transform.rotation);
-            diggingProjectile.SetActive(true);
-        }
-        else
-        {
-            diggingProjectile.SetActive(false);
+            if (isBeingHeld)
+            {
+                //Instantiate(diggingProjectile, this.transform.position, this.transform.rotation);
+                diggingProjectile.SetActive(true);
+            }
+            else
+            {
+                diggingProjectile.SetActive(false);
+            }
         }
 
         // check if player is on ground constantly
@@ -163,6 +166,7 @@ public class characterMovement : MonoBehaviour
             shotLeft = true;
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
