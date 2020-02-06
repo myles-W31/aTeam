@@ -50,6 +50,8 @@ public class characterMovement : MonoBehaviour
 
     public GameObject diggingProjectile;
     public bool isBeingHeld;
+    public bool isWalking;
+
     public Animator myAnim;
 
     // Start is called before the first frame update
@@ -76,7 +78,9 @@ public class characterMovement : MonoBehaviour
         canShoot = true;
         canDig = true;
         canPickUpObject = false;
+
         isBeingHeld = false;
+        isWalking = false;
 
         diggingProjectile.SetActive(false);
     }
@@ -91,6 +95,7 @@ public class characterMovement : MonoBehaviour
             transform.localScale = new Vector3(2f, 2f, 2f);
             facingRight = true;
             facingLeft = false;
+            isWalking = true;
         }
         else if (Input.GetKey(left)||Input.GetKey(leftAlt))
         {
@@ -98,10 +103,12 @@ public class characterMovement : MonoBehaviour
             transform.localScale = new Vector3(-2f, 2f, 2f);
             facingRight = false;
             facingLeft = true;
+            isWalking = true;
         }
         else
         {
             thePlayerRB.velocity = new Vector3(0f, thePlayerRB.velocity.y, 0f);
+            isWalking = false;
         }
 
         // jumping
@@ -149,6 +156,8 @@ public class characterMovement : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 
         myAnim.SetBool("canShoot", canShoot);
+        myAnim.SetBool("isWalking", isWalking);
+        myAnim.SetBool("isGrounded", isGrounded);
     }
 
     IEnumerator ShootDelay()
