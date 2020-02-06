@@ -47,10 +47,10 @@ public class LevelGoalScript : MonoBehaviour
             {
                 SceneManager.LoadScene(levelToLoad3);
             }
-            /*else if (index == 4)
+            else if (index == 4)
             {
                 SceneManager.LoadScene(levelToLoad4);
-            }*/
+            }
         }
     }
 }
