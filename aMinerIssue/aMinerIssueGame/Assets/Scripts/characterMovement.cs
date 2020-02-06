@@ -41,6 +41,12 @@ public class characterMovement : MonoBehaviour
     public float maxPlayerHealth;
     public Vector3 respawnPosition;
 
+    public bool canShoot;
+    public bool canPickUpObject;
+
+    public bool shotLeft;
+    public bool shotRight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,40 +62,31 @@ public class characterMovement : MonoBehaviour
         facingRight = true;
         facingLeft = false;
 
+        shotLeft = false;
+        shotRight = false;
+
         maxPlayerHealth = 1;
         playerHealth = maxPlayerHealth;
+
+        canShoot = true;
+        canPickUpObject = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(playerHealth);
-        /*
-        Vector3 pos = transform.position;
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            pos.x -= speed;
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            pos.x += speed;
-        }
-
-        transform.position = pos;
-        */
-
         // walking right, left, or standing still
         if (Input.GetKey(right)||Input.GetKey(rightAlt))
         {
             thePlayerRB.velocity = new Vector3(moveSpeed, thePlayerRB.velocity.y, 0f);
-            transform.localScale = new Vector3(.25f, .25f, .25f);
+            transform.localScale = new Vector3(2f, 2f, 2f);
             facingRight = true;
             facingLeft = false;
         }
         else if (Input.GetKey(left)||Input.GetKey(leftAlt))
         {
             thePlayerRB.velocity = new Vector3(-moveSpeed, thePlayerRB.velocity.y, 0f);
-            transform.localScale = new Vector3(-.25f, .25f, .25f);
+            transform.localScale = new Vector3(-2f, 2f, 2f);
             facingRight = false;
             facingLeft = true;
         }
@@ -105,11 +102,12 @@ public class characterMovement : MonoBehaviour
         }
 
         // attacking
-        if (Input.GetKeyDown(attack))
+        if (Input.GetKeyDown(attack) && canShoot)
         {
             BasicAttack();
-
             StartCoroutine(ShootDelay());
+            canShoot = false;
+            //StartCoroutine(ShootDelay());
         }
 
         // check if player is on ground constantly
@@ -125,15 +123,34 @@ public class characterMovement : MonoBehaviour
     {
         if (facingRight)
         {
-            var attackInst = Instantiate(attackRB, new Vector3(thePlayerRB.position.x, thePlayerRB.position.y, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+            var attackInst = Instantiate(attackRB, new Vector3(thePlayerRB.position.x + 0.5f, thePlayerRB.position.y, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
             attackInst.velocity = new Vector2(attackSpeed, 0);
             Physics2D.IgnoreCollision(attackInst.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            shotRight = true;
+            shotLeft = false;
         }
         else if (facingLeft)
         {
-            var attackInst = Instantiate(attackRB, new Vector3(thePlayerRB.position.x, thePlayerRB.position.y, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+            var attackInst = Instantiate(attackRB, new Vector3(thePlayerRB.position.x - 0.5f, thePlayerRB.position.y, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
             attackInst.velocity = new Vector2(-attackSpeed, 0);
             Physics2D.IgnoreCollision(attackInst.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            shotRight = false;
+            shotLeft = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Pickaxe" && canPickUpObject == true)
+        {
+            Debug.Log("pick up");
+            Destroy(collision.gameObject);
+            canShoot = true;
+            canPickUpObject = false;
+        }
+        else if (collision.tag == "Pickaxe" && canPickUpObject == false)
+        {
+            Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>(), true);
         }
     }
 }

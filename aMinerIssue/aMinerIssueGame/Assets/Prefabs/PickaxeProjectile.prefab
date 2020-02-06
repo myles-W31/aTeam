@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 8383132708724228298}
   - component: {fileID: 8383132708724228297}
   - component: {fileID: -1099732007229908043}
-  m_Layer: 0
+  - component: {fileID: 3993080687662042422}
+  m_Layer: 9
   m_Name: PickaxeProjectile
-  m_TagString: Untagged
+  m_TagString: Pickaxe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8383132708724228296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.3506145, y: -1.609096, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,8 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2498953586472091060, guid: 8acf9ac5b02945a479078b5eafa0165b,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: c910da4772bf0184185893b5158aeb07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
 --- !u!50 &8383132708724228298
 Rigidbody2D:
   serializedVersion: 4
@@ -116,8 +116,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_GravityScale: 0.5
+  m_Material: {fileID: 6200000, guid: 78884a91714be2340bbe4d5f655f0156, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -153,3 +153,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55349f047854cb6428e4a9dd111450e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theEnemyMovement: {fileID: 0}
+  theCharacterMovement: {fileID: 0}
+  myAnim: {fileID: 8383132708724228297}
+  isOnGroundRight: 0
+  isOnGroundLeft: 0
+--- !u!58 &3993080687662042422
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8383132708724228296}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.25

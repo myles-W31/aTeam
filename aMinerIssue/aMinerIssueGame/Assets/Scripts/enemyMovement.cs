@@ -13,6 +13,9 @@ public class enemyMovement : MonoBehaviour
 
     public Rigidbody2D enemyRigid;
     public float moveSpeed;
+
+    public manager theManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,7 @@ public class enemyMovement : MonoBehaviour
         enemyHealth = maxEnemyHealth;
         moveRight = false;
         enemyRigid = GetComponent<Rigidbody2D>();
+        theManager = FindObjectOfType<manager>();
     }
 
     // Update is called once per frame
@@ -28,6 +32,7 @@ public class enemyMovement : MonoBehaviour
         if (enemyHealth <= 0)
         {
             Destroy(theEnemy.gameObject);
+            Instantiate(theManager.enemyExplosion, theEnemy.transform.position, theEnemy.transform.rotation);
         }
 
         //if moveRight is false, move to point A
