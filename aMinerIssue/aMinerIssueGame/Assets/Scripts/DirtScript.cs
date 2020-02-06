@@ -9,18 +9,27 @@ public class DirtScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    void OnMouseDown()
+    /*void OnMouseDown()
     {
         Destroy(gameObject);
         Instantiate(dirtExplosion, this.transform.position, this.transform.rotation);
+    }*/
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "DiggingPickaxe")
+        {
+            Destroy(gameObject);
+            Instantiate(dirtExplosion, this.transform.position, this.transform.rotation);
+        }
     }
 }

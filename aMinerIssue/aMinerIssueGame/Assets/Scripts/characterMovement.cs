@@ -47,6 +47,9 @@ public class characterMovement : MonoBehaviour
     public bool shotLeft;
     public bool shotRight;
 
+    public GameObject diggingProjectile;
+    public bool isBeingHeld;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +73,9 @@ public class characterMovement : MonoBehaviour
 
         canShoot = true;
         canPickUpObject = false;
+        isBeingHeld = false;
+
+        diggingProjectile.SetActive(false);
     }
 
     // Update is called once per frame
@@ -108,6 +114,25 @@ public class characterMovement : MonoBehaviour
             StartCoroutine(ShootDelay());
             canShoot = false;
             //StartCoroutine(ShootDelay());
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            isBeingHeld = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            isBeingHeld = false;
+        }
+
+        if (isBeingHeld)
+        {
+            //Instantiate(diggingProjectile, this.transform.position, this.transform.rotation);
+            diggingProjectile.SetActive(true);
+        }
+        else
+        {
+            diggingProjectile.SetActive(false);
         }
 
         // check if player is on ground constantly
