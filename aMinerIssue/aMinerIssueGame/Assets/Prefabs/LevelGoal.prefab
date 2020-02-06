@@ -71,6 +71,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToLoad1: TestLevel1
-  levelToLoad2: TestLevel2
+  levelToLoad2: Level2
   levelToLoad3: TestLevel3
   levelToLoad4: TestLevel4
