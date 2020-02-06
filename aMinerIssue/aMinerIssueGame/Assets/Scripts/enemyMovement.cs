@@ -20,6 +20,7 @@ public class enemyMovement : MonoBehaviour
     public float moveSpeed;
 
     public manager theManager;
+    public characterMovement theCharacterMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class enemyMovement : MonoBehaviour
         moveRight = false;
         enemyRigid = GetComponent<Rigidbody2D>();
         theManager = FindObjectOfType<manager>();
+        theCharacterMovement = FindObjectOfType<characterMovement>();
     }
 
     // Update is called once per frame
@@ -38,16 +40,16 @@ public class enemyMovement : MonoBehaviour
         {
             Destroy(theEnemy.gameObject);
             Instantiate(theManager.enemyExplosion, theEnemy.transform.position, theEnemy.transform.rotation);
-        }       
+            theManager.AddCoins(100);
 
-        if(this.gameObject.transform.position.x >= pointB.transform.position.x && this.gameObject.transform.position.x <= pointA.transform.position.x)
+        }
+
+        if (this.gameObject.transform.position.x >= pointB.transform.position.x && this.gameObject.transform.position.x <= pointA.transform.position.x)
         {
-            Debug.Log("going left");
             enemyRigid.velocity = new Vector3(-moveSpeed, enemyRigid.velocity.y, 0f);
         }
         else if (this.gameObject.transform.position.x <= pointA.transform.position.x)
         {
-            Debug.Log("going right");
             enemyRigid.velocity = new Vector3(moveSpeed, enemyRigid.velocity.y, 0f);
         }
         //if moveRight is false, move to point A

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class manager : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class manager : MonoBehaviour
     public float waitToRespawn;
 
     public GameObject dirt;
+    public Text pointText;
+
+    public int mainScore;
 
     LevelLoader LevelLoader;
 
@@ -38,12 +42,14 @@ public class manager : MonoBehaviour
                 Instantiate(dirt,pos, Quaternion.identity);
             }
         }
-
+        //mainScore = PlayerPrefs.GetInt("Player Score");
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(mainScore);
+        
         /*if(theEnemyMovement.theEnemy != null)
         {
             if (theEnemyMovement.enemyHealth <= 0)
@@ -57,7 +63,18 @@ public class manager : MonoBehaviour
             Respawn();
             respawning = true;
             theCharacterMovement.isBeingHeld = false;
+            //theCharacterMovement.score = 0;
+            mainScore = 0;
+            pointText.text = "Score: " + mainScore;
         }
+        //PlayerPrefs.SetInt("Player Score", mainScore);
+    }
+
+    public void AddCoins(int pointsToAdd)
+    {
+        mainScore += pointsToAdd;
+
+        pointText.text = "Score: " + mainScore;
     }
 
     public void Respawn()

@@ -54,6 +54,8 @@ public class characterMovement : MonoBehaviour
 
     public Animator myAnim;
 
+    public int score;
+
     // Start is called before the first frame update
     void Start()
     {

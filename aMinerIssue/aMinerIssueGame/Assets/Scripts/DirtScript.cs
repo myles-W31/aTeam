@@ -5,11 +5,15 @@ using UnityEngine;
 public class DirtScript : MonoBehaviour
 {
     public GameObject dirtExplosion;
+    public int scoreYield;
+    public characterMovement theCharacterMovement;
+    public manager theManager;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        theCharacterMovement = FindObjectOfType<characterMovement>();
+        theManager = FindObjectOfType<manager>();
     }
 
     // Update is called once per frame
@@ -30,6 +34,8 @@ public class DirtScript : MonoBehaviour
         {
             Destroy(gameObject);
             Instantiate(dirtExplosion, this.transform.position, this.transform.rotation);
+            //theCharacterMovement.score += scoreYield;
+            theManager.AddCoins(scoreYield);
         }
     }
 }

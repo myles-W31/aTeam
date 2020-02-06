@@ -12,7 +12,6 @@ public class LevelLoader : MonoBehaviour
     int cChunknum;
     public GameObject dirt;
 
-
     public string CurrentChunk { get { return loadedChunkList[cChunknum]; } set { loadedChunkList[cChunknum] = value; } }
 
     // Start is called before the first frame update

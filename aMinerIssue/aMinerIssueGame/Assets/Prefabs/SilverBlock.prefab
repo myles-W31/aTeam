@@ -122,3 +122,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dirtExplosion: {fileID: 603148997599374539, guid: b478e4204df61a44aa44754e4a6e9de7,
     type: 3}
+  scoreYield: 50
+  theCharacterMovement: {fileID: 0}
