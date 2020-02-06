@@ -43,9 +43,16 @@ public class characterMovement : MonoBehaviour
 
     public bool canShoot;
     public bool canPickUpObject;
+    public bool canDig;
 
     public bool shotLeft;
     public bool shotRight;
+
+    public GameObject diggingProjectile;
+    public bool isBeingHeld;
+    public bool isWalking;
+
+    public Animator myAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -69,12 +76,19 @@ public class characterMovement : MonoBehaviour
         playerHealth = maxPlayerHealth;
 
         canShoot = true;
+        canDig = true;
         canPickUpObject = false;
+
+        isBeingHeld = false;
+        isWalking = false;
+
+        diggingProjectile.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(isWalking);
         // walking right, left, or standing still
         if (Input.GetKey(right)||Input.GetKey(rightAlt))
         {
@@ -82,6 +96,14 @@ public class characterMovement : MonoBehaviour
             transform.localScale = new Vector3(2f, 2f, 2f);
             facingRight = true;
             facingLeft = false;
+            if(isGrounded)
+            {
+                isWalking = true;
+            }
+            if(!isGrounded)
+            {
+                isWalking = false;
+            }
         }
         else if (Input.GetKey(left)||Input.GetKey(leftAlt))
         {
@@ -89,16 +111,26 @@ public class characterMovement : MonoBehaviour
             transform.localScale = new Vector3(-2f, 2f, 2f);
             facingRight = false;
             facingLeft = true;
+            if (isGrounded)
+            {
+                isWalking = true;
+            }
+            if (!isGrounded)
+            {
+                isWalking = false;
+            }
         }
         else
         {
             thePlayerRB.velocity = new Vector3(0f, thePlayerRB.velocity.y, 0f);
+            isWalking = false;
         }
 
         // jumping
         if (((Input.GetKeyDown(jump))||Input.GetKeyDown(jumpAlt)) && isGrounded)
         {
             thePlayerRB.velocity = new Vector3(thePlayerRB.velocity.x, jumpSpeed, 0f);
+            isWalking = false;
         }
 
         // attacking
@@ -107,11 +139,41 @@ public class characterMovement : MonoBehaviour
             BasicAttack();
             StartCoroutine(ShootDelay());
             canShoot = false;
+            canDig = false;
             //StartCoroutine(ShootDelay());
+        }
+
+        if (canDig)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                isBeingHeld = true;
+                canShoot = false;
+                canDig = true;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                isBeingHeld = false;
+                canShoot = true;
+            }
+
+            if (isBeingHeld)
+            {
+                //Instantiate(diggingProjectile, this.transform.position, this.transform.rotation);
+                diggingProjectile.SetActive(true);
+            }
+            else
+            {
+                diggingProjectile.SetActive(false);
+            }
         }
 
         // check if player is on ground constantly
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+
+        myAnim.SetBool("canShoot", canShoot);
+        myAnim.SetBool("isWalking", isWalking);
+        myAnim.SetBool("isGrounded", isGrounded);
     }
 
     IEnumerator ShootDelay()
@@ -139,6 +201,7 @@ public class characterMovement : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Pickaxe" && canPickUpObject == true)
@@ -146,6 +209,7 @@ public class characterMovement : MonoBehaviour
             Debug.Log("pick up");
             Destroy(collision.gameObject);
             canShoot = true;
+            canDig = true;
             canPickUpObject = false;
         }
         else if (collision.tag == "Pickaxe" && canPickUpObject == false)

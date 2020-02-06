@@ -5,9 +5,14 @@ using UnityEngine;
 public class MovePickaxe : MonoBehaviour
 {
     public bool isBeingHeld;
+    public characterMovement theCharacterMovement;
+    public manager theManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        theCharacterMovement = FindObjectOfType<characterMovement>();
+        theManager = FindObjectOfType<manager>();
         isBeingHeld = false;
     }
 
@@ -28,9 +33,9 @@ public class MovePickaxe : MonoBehaviour
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = (pos);
         }
+
+        Vector3 v = this.gameObject.transform.position - theCharacterMovement.gameObject.transform.position;
+        v = Vector3.ClampMagnitude(v, 1.5f);
+        this.gameObject.transform.position = theCharacterMovement.gameObject.transform.position + v;
     }
-    /*void OnMouseDown()
-    {
-        isBeingHeld = true;
-    }*/
 }

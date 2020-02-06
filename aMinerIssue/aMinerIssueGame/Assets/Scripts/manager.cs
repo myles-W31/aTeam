@@ -9,8 +9,9 @@ public class manager : MonoBehaviour
 
     public enemyMovement theEnemyMovement;
     public characterMovement theCharacterMovement;
+    public MovePickaxe theMovePickaxe;
 
-    private bool respawning;
+    public bool respawning;
     public bool respawnCoActive;
     public float waitToRespawn;
 
@@ -24,6 +25,7 @@ public class manager : MonoBehaviour
         theCharacterMovement = FindObjectOfType<characterMovement>();
         theEnemyMovement = FindObjectOfType<enemyMovement>();
         LevelLoader = FindObjectOfType<LevelLoader>();
+        theMovePickaxe = FindObjectOfType<MovePickaxe>();
 
         SpriteRenderer dirtdim = dirt.GetComponent<SpriteRenderer>();
         for (int i = 0; i<10;i++)
@@ -54,6 +56,7 @@ public class manager : MonoBehaviour
         {
             Respawn();
             respawning = true;
+            theCharacterMovement.isBeingHeld = false;
         }
     }
 
