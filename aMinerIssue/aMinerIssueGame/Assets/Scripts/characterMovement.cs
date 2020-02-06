@@ -88,7 +88,6 @@ public class characterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isWalking);
         // walking right, left, or standing still
         if (Input.GetKey(right)||Input.GetKey(rightAlt))
         {
