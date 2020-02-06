@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class manager : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class manager : MonoBehaviour
     public int mainScore;
 
     LevelLoader LevelLoader;
+    public string mainMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -104,6 +107,7 @@ public class manager : MonoBehaviour
 
         theCharacterMovement.transform.position = theCharacterMovement.respawnPosition;
         theCharacterMovement.gameObject.SetActive(true);
+        //SceneManager.LoadScene(mainMenu);
     }
 
     public void HurtPlayer(int damageToTake)

@@ -56,3 +56,4 @@ MonoBehaviour:
   dirt: {fileID: 0}
   pointText: {fileID: 0}
   mainScore: 0
+  mainMenu: Main Menu

@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LevelGoalScript : MonoBehaviour
 {
-
     public string levelToLoad1;
     public string levelToLoad2;
     public string levelToLoad3;
