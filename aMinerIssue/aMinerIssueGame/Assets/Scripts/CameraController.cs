@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public GameObject player;        //Public variable to store a reference to the player game object
     private Vector3 offset;            //Private variable to store the offset distance between the player and camera
+    public float minX;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,13 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         transform.position = player.transform.position + offset;
+
+        Vector3 p = transform.position;
+        if(p.x < minX)
+        {
+            p.x = minX;
+            transform.position = p;
+        }
     }
 
     /*public GameObject target;
