@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public GameObject player;        //Public variable to store a reference to the player game object
+    private Vector3 offset;            //Private variable to store the offset distance between the player and camera
 
-    public GameObject target;
+    // Start is called before the first frame update
+    void Start()
+    {
+        offset = transform.position - player.transform.position;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.position = player.transform.position + offset;
+    }
+
+    /*public GameObject target;
     public float followAhead;
 
     private Vector3 targetPosition;
@@ -43,5 +57,5 @@ public class CameraController : MonoBehaviour
 
         //targetPosition = new Vector3(target.transform.position.x, target.transform.position.y, target.transform.position.z);
         //transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 8);
-    }
+    }*/
 }
