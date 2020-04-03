@@ -50,9 +50,7 @@ public class manager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        Debug.Log(mainScore);
-        
+    {        
         /*if(theEnemyMovement.theEnemy != null)
         {
             if (theEnemyMovement.enemyHealth <= 0)
