@@ -7,7 +7,6 @@ public class BossSpoooderScript : MonoBehaviour
     public GameObject theEnemy;
     public float enemyHealth;
     private float maxEnemyHealth;
-    //bool moveRight;
     public bool canTurnRight;
     public bool canTurnLeft;
 
@@ -15,6 +14,7 @@ public class BossSpoooderScript : MonoBehaviour
     public bool movingLeft;
     public bool facingRight;
     public bool facingLeft;
+    public bool seen;
 
     public Rigidbody2D enemyRigid;
     public float moveSpeed;
@@ -27,16 +27,18 @@ public class BossSpoooderScript : MonoBehaviour
     {
         maxEnemyHealth = 1;
         enemyHealth = maxEnemyHealth;
-        //moveRight = false;
+
+        canTurnRight = false;
+        canTurnLeft = false;
         movingLeft = true;
         movingRight = false;
         facingRight = false;
         facingLeft = true;
+        seen = false;
+
         enemyRigid = GetComponent<Rigidbody2D>();
         theManager = FindObjectOfType<manager>();
         theCharacterMovement = FindObjectOfType<characterMovement>();
-        canTurnRight = false;
-        canTurnLeft = false;
     }
 
     // Update is called once per frame
@@ -46,26 +48,36 @@ public class BossSpoooderScript : MonoBehaviour
         {
             Destroy(theEnemy.gameObject);
             Instantiate(theManager.enemyExplosion, theEnemy.transform.position, theEnemy.transform.rotation);
-            //theManager.AddCoins(100);
         }
 
-        if (movingRight)
+        float distance = Mathf.Abs(enemyRigid.gameObject.transform.position.x - theCharacterMovement.thePlayer.transform.position.x);
+
+        if (distance <= 24 || seen)
         {
-            facingRight = true;
-            facingLeft = false;
-            canTurnLeft = true;
-            canTurnRight = false;
-            enemyRigid.velocity = new Vector3(5f, enemyRigid.velocity.y, 0f);
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
-        else if(movingLeft)
-        {
-            facingRight = false;
-            facingLeft = true;
-            canTurnLeft = false;
-            canTurnRight = true;
-            enemyRigid.velocity = new Vector3(-5f, enemyRigid.velocity.y, 0f);
-            transform.localScale = new Vector3(1f,  1f, 1f);
+            seen = true; 
+
+            if (movingRight)
+            {
+                facingRight = true;
+                facingLeft = false;
+
+                canTurnLeft = true;
+                canTurnRight = false;
+
+                enemyRigid.velocity = new Vector3(5f, enemyRigid.velocity.y, 0f);
+                transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
+            else if (movingLeft)
+            {
+                facingRight = false;
+                facingLeft = true;
+
+                canTurnLeft = false;
+                canTurnRight = true;
+
+                enemyRigid.velocity = new Vector3(-5f, enemyRigid.velocity.y, 0f);
+                transform.localScale = new Vector3(1f, 1f, 1f);
+            }
         }
     }
 
@@ -78,29 +90,15 @@ public class BossSpoooderScript : MonoBehaviour
     {
         if (other.tag == "Ground")
         {
-            Debug.Log("hey");
-            /*if (movingRight)
-            {
-                movingRight = false;
-            }
-            else
-            {
-                movingRight = true;
-            }*/
             if(movingLeft && canTurnRight)
             {
                 movingRight = true;
                 movingLeft = false;
-                Debug.Log("right");
-                //enemyRigid.velocity = new Vector3(5f, enemyRigid.velocity.y, 0f);
-                //transform.localScale = new Vector3(-1f, 1f, 1f);
             }
             else if (movingRight && canTurnLeft)
             {
                 movingRight = false;
                 movingLeft = true;
-                //canTurn = false;
-                Debug.Log("left");
             }
         }
     }
