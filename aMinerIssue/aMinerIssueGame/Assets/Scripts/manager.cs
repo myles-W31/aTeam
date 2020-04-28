@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class manager : MonoBehaviour
 {
     public GameObject enemyExplosion;
     public GameObject playerExplosion;
+    public GameObject spiderBossExplosion;
 
     public enemyMovement theEnemyMovement;
     public characterMovement theCharacterMovement;
@@ -26,6 +26,9 @@ public class manager : MonoBehaviour
     LevelLoader LevelLoader;
     public string mainMenu;
 
+    public float attackTime;
+    public bool attackCountdown;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,15 +36,17 @@ public class manager : MonoBehaviour
         theEnemyMovement = FindObjectOfType<enemyMovement>();
         LevelLoader = FindObjectOfType<LevelLoader>();
         theMovePickaxe = FindObjectOfType<MovePickaxe>();
+        attackCountdown = false;
+        attackTime = 0;
 
-        SpriteRenderer dirtdim = dirt.GetComponent<SpriteRenderer>();
+        //SpriteRenderer dirtdim = dirt.GetComponent<SpriteRenderer>();
         for (int i = 0; i<10;i++)
         {
             for(int j = 0; j < 10; j++)
             {
                 Vector3 pos = dirt.transform.position;
-                pos.x = dirtdim.size.x * i;
-                pos.y = dirtdim.size.y * j;
+                //pos.x = dirtdim.size.x * i;
+                //pos.y = dirtdim.size.y * j;
                 Instantiate(dirt,pos, Quaternion.identity);
             }
         }
@@ -51,6 +56,20 @@ public class manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
+        if(attackTime > 0)
+        {
+            attackTime -= Time.deltaTime;
+        }
+        else if(attackTime <= 0 && attackCountdown)
+        {
+            attackTime = 0;
+            Debug.Log("pick up");
+            //Destroy(FindObjectOfType<ProjectileAttack>());
+            theCharacterMovement.canShoot = true;
+            theCharacterMovement.canDig = true;
+            theCharacterMovement.canPickUpObject = false;
+            attackCountdown = false;
+        }
         /*if(theEnemyMovement.theEnemy != null)
         {
             if (theEnemyMovement.enemyHealth <= 0)
@@ -75,7 +94,7 @@ public class manager : MonoBehaviour
     {
         mainScore += pointsToAdd;
 
-        pointText.text = "Score: " + mainScore;
+        //pointText.text = "Score: " + mainScore;
     }
 
     public void Respawn()

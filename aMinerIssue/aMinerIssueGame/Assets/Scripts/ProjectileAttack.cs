@@ -5,6 +5,8 @@ using UnityEngine;
 public class ProjectileAttack : MonoBehaviour
 {
     public enemyMovement theEnemyMovement;
+    public BossSpoooderScript theBossSpoooderScript;
+
     public characterMovement theCharacterMovement;
     public Animator myAnim;
     public bool isOnGroundRight;
@@ -14,6 +16,8 @@ public class ProjectileAttack : MonoBehaviour
     void Start()
     {
         theEnemyMovement = FindObjectOfType<enemyMovement>();
+        theBossSpoooderScript = FindObjectOfType<BossSpoooderScript>();
+
         theCharacterMovement = FindObjectOfType<characterMovement>();
         isOnGroundLeft = false;
         isOnGroundRight = false;
@@ -32,7 +36,14 @@ public class ProjectileAttack : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             //Destroy(gameObject);
-            theEnemyMovement.HurtEnemyMethod(collision.GetComponent<enemyMovement>(), 0.5f);
+            if(collision.gameObject.GetComponent<enemyMovement>())
+            {
+                theEnemyMovement.HurtEnemyMethod(collision.GetComponent<enemyMovement>(), 0.5f);
+            }
+            else if (collision.gameObject.GetComponent<BossSpoooderScript>())
+            {
+                theBossSpoooderScript.HurtEnemyMethod(collision.GetComponent<BossSpoooderScript>(), 0.5f);
+            }
         }
         if (collision.tag == "Ground")
         {

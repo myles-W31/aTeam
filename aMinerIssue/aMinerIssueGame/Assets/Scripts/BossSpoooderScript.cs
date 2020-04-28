@@ -47,7 +47,7 @@ public class BossSpoooderScript : MonoBehaviour
         if (enemyHealth <= 0)
         {
             Destroy(theEnemy.gameObject);
-            Instantiate(theManager.enemyExplosion, theEnemy.transform.position, theEnemy.transform.rotation);
+            Instantiate(theManager.spiderBossExplosion, theEnemy.transform.position, theEnemy.transform.rotation);
         }
 
         float distance = Mathf.Abs(enemyRigid.gameObject.transform.position.x - theCharacterMovement.thePlayer.transform.position.x);
@@ -81,14 +81,14 @@ public class BossSpoooderScript : MonoBehaviour
         }
     }
 
-    public void HurtEnemyMethod(enemyMovement objectToHurt, float damageToTake)
+    public void HurtEnemyMethod(BossSpoooderScript objectToHurt, float damageToTake)
     {
         objectToHurt.enemyHealth -= damageToTake;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Ground")
+        if (other.tag == "Ground" || other.tag == "InvisibleGround")
         {
             if(movingLeft && canTurnRight)
             {

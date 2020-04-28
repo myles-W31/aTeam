@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4869867351991166153}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12, y: -0.62657595, z: 415.98465}
+  m_LocalPosition: {x: 12, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4869867353131750389}
@@ -46,7 +46,8 @@ GameObject:
   - component: {fileID: 4869867353051975389}
   - component: {fileID: 4869867353051975378}
   - component: {fileID: 4869867353051975379}
-  m_Layer: 0
+  - component: {fileID: 1740603079}
+  m_Layer: 13
   m_Name: Spider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -61,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4869867353051975376}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.271681, y: -0.62657595, z: 415.98465}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 0}
   m_Children: []
   m_Father: {fileID: 4869867353131750389}
@@ -102,8 +103,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1425307089
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9de9c5e73ca47e04bb59b59dc972ff8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -130,14 +131,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theEnemy: {fileID: 4869867353051975376}
   enemyHealth: 1
-  pointA: {fileID: 4869867353698273407}
-  pointB: {fileID: 4869867351991166153}
-  leftPoint: {fileID: 4869867353698273406}
-  rightPoint: {fileID: 4869867351991166152}
+  canTurnRight: 0
+  canTurnLeft: 0
   movingRight: 0
+  movingLeft: 0
+  facingRight: 0
+  facingLeft: 0
+  seen: 0
   enemyRigid: {fileID: 4869867353051975391}
   moveSpeed: 3
   theManager: {fileID: 0}
+  theCharacterMovement: {fileID: 0}
 --- !u!50 &4869867353051975391
 Rigidbody2D:
   serializedVersion: 4
@@ -172,9 +176,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.05, y: 0}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.35
 --- !u!58 &4869867353051975389
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -182,7 +186,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4869867353051975376}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -223,6 +227,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &1740603079
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4869867353051975376}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.7890625, y: 0.734375}
+    newSize: {x: 16, y: 9.02}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 0.65}
+  m_EdgeRadius: 0
 --- !u!1 &4869867353131750378
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +264,7 @@ GameObject:
   - component: {fileID: 4869867353131750389}
   m_Layer: 0
   m_Name: SpiderHolder
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,7 +277,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4869867353131750378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5076814, y: 4.287525, z: -417.1875}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4869867353051975384}
@@ -280,7 +310,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4869867353698273407}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: -0.43752527, z: 415.98465}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4869867353131750389}

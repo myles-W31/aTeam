@@ -55,6 +55,7 @@ public class characterMovement : MonoBehaviour
     public Animator myAnim;
 
     public int score;
+    private manager theManager;
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +86,7 @@ public class characterMovement : MonoBehaviour
         isWalking = false;
 
         diggingProjectile.SetActive(false);
+        theManager = FindObjectOfType<manager>();
     }
 
     // Update is called once per frame
@@ -142,6 +144,8 @@ public class characterMovement : MonoBehaviour
             canShoot = false;
             canDig = false;
             StartCoroutine(ShootDelay());
+            theManager.attackTime = 10;
+            theManager.attackCountdown = true;
         }
 
         if (canDig)

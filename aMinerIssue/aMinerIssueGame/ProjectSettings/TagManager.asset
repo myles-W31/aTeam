@@ -10,6 +10,7 @@ TagManager:
   - DiggingPickaxe
   - DigCircle
   - Goal
+  - InvisibleGround
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - DigCircle
   - DigPickaxe
   - Enemy
-  - 
+  - InvisibleEnemyBarrier
   - 
   - 
   - 
@@ -49,6 +50,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Above Default
+    uniqueID: 2665188629
     locked: 0
   - name: Foreground
     uniqueID: 2869660207
