@@ -13,6 +13,9 @@ public class manager : MonoBehaviour
     public enemyMovement theEnemyMovement;
     public characterMovement theCharacterMovement;
     public MovePickaxe theMovePickaxe;
+    public BossWall1 theBossWall1;
+    public BossSpoooderScript theBossSpoooderScript;
+    public BossPoint theBossPoint;
 
     public bool respawning;
     public bool respawnCoActive;
@@ -28,6 +31,7 @@ public class manager : MonoBehaviour
 
     public float attackTime;
     public bool attackCountdown;
+    public Scene currentScene;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +40,13 @@ public class manager : MonoBehaviour
         theEnemyMovement = FindObjectOfType<enemyMovement>();
         LevelLoader = FindObjectOfType<LevelLoader>();
         theMovePickaxe = FindObjectOfType<MovePickaxe>();
+        theBossWall1 = FindObjectOfType<BossWall1>();
+        theBossSpoooderScript = FindObjectOfType<BossSpoooderScript>();
+        theBossPoint = FindObjectOfType<BossPoint>();
+
         attackCountdown = false;
         attackTime = 0;
+        currentScene = SceneManager.GetActiveScene();
 
         //SpriteRenderer dirtdim = dirt.GetComponent<SpriteRenderer>();
         for (int i = 0; i<10;i++)
@@ -85,7 +94,7 @@ public class manager : MonoBehaviour
             theCharacterMovement.isBeingHeld = false;
             //theCharacterMovement.score = 0;
             mainScore = 0;
-            pointText.text = "Score: " + mainScore;
+            //pointText.text = "Score: " + mainScore;
         }
         //PlayerPrefs.SetInt("Player Score", mainScore);
     }
@@ -123,6 +132,18 @@ public class manager : MonoBehaviour
         respawning = false;
 
         theCharacterMovement.transform.position = theCharacterMovement.respawnPosition;
+
+        if (currentScene.name == "BossLevel1")
+        {
+            Debug.Log("hey");
+            theBossPoint.bossStarts = false;
+            theBossSpoooderScript.seen = false;
+            theBossSpoooderScript.theEnemy.gameObject.transform.position = theBossSpoooderScript.bossSpawn;
+            theBossSpoooderScript.theEnemy.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+            theBossSpoooderScript.enemyRigid.velocity = Vector3.zero;
+            theBossWall1.theBossWall.SetActive(false);
+        }
+
         theCharacterMovement.gameObject.SetActive(true);
         //SceneManager.LoadScene(mainMenu);
     }

@@ -5,22 +5,22 @@ using UnityEngine;
 public class BossWall1 : MonoBehaviour
 {
     public BossPoint theBossPoint;
+    public GameObject theBossWall;
 
     // Start is called before the first frame update
     void Start()
     {
         theBossPoint = FindObjectOfType<BossPoint>();
 
-        this.gameObject.SetActive(false);
+        theBossWall.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(theBossPoint.bossStarts)
+        if(theBossPoint.bossStarts == true)
         {
-            Debug.Log("close");
-            this.gameObject.SetActive(true);
+            theBossWall.SetActive(true);
         }
     }
 }

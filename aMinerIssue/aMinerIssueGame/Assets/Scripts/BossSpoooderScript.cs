@@ -18,6 +18,7 @@ public class BossSpoooderScript : MonoBehaviour
 
     public Rigidbody2D enemyRigid;
     public float moveSpeed;
+    public Vector2 bossSpawn;
 
     public manager theManager;
     public characterMovement theCharacterMovement;
@@ -28,6 +29,7 @@ public class BossSpoooderScript : MonoBehaviour
     {
         maxEnemyHealth = 1;
         enemyHealth = maxEnemyHealth;
+        bossSpawn = this.transform.position;
 
         canTurnRight = false;
         canTurnLeft = false;
