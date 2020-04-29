@@ -15,6 +15,7 @@ public class enemyMovement : MonoBehaviour
     public bool facingRight;
     public bool facingLeft;
     public bool seen;
+    public float distance;
 
     public Rigidbody2D enemyRigid;
     public float moveSpeed;
@@ -50,11 +51,11 @@ public class enemyMovement : MonoBehaviour
             Instantiate(theManager.enemyExplosion, theEnemy.transform.position, theEnemy.transform.rotation);
         }
 
-        float distance = Mathf.Abs(enemyRigid.gameObject.transform.position.x - theCharacterMovement.thePlayer.transform.position.x);
+        distance = Mathf.Abs(enemyRigid.gameObject.transform.position.x - theCharacterMovement.thePlayer.transform.position.x);
 
-        if (distance <= 15 || seen)
-        {
-            seen = true;
+        //if (this.gameObject.GetComponent<enemyMovement>().distance <= 15 || this.gameObject.GetComponent<enemyMovement>().seen)
+        //{
+            //this.gameObject.GetComponent<enemyMovement>().seen = true;
 
             if (movingRight)
             {
@@ -78,7 +79,7 @@ public class enemyMovement : MonoBehaviour
                 enemyRigid.velocity = new Vector3(-moveSpeed, enemyRigid.velocity.y, 0f);
                 transform.localScale = new Vector3(4f, 4f, 0f);
             }
-        }
+        //}
     }
 
     public void HurtEnemyMethod(enemyMovement objectToHurt, float damageToTake)

@@ -33,6 +33,8 @@ public class manager : MonoBehaviour
     public bool attackCountdown;
     public Scene currentScene;
 
+    public AudioSource bossMusic;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -95,6 +97,15 @@ public class manager : MonoBehaviour
             //theCharacterMovement.score = 0;
             mainScore = 0;
             //pointText.text = "Score: " + mainScore;
+        }
+
+        if(currentScene.name == "BossLevel1" && theBossSpoooderScript.enemyHealth > 0)
+        {
+            //bossMusic.Play();
+        }
+        else if (currentScene.name == "BossLevel1" && theBossSpoooderScript.enemyHealth <= 0)
+        {
+            //bossMusic.Stop();
         }
         //PlayerPrefs.SetInt("Player Score", mainScore);
     }

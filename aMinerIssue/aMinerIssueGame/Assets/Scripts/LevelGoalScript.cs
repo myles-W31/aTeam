@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelGoalScript : MonoBehaviour
 {
-    public string levelToLoad1;
-    public string levelToLoad2;
-    public string levelToLoad3;
-    public string levelToLoad4;
+    //public string levelToLoad1;
+    //public string levelToLoad2;
+    //public string levelToLoad3;
+    public string nextLevel;
 
     public manager theManager;
     public characterMovement theCharacterMovement;
@@ -30,26 +30,9 @@ public class LevelGoalScript : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            int index = Random.Range(1, 4);
             //theManager.mainScore = theManager.mainScore + theCharacterMovement.score;
-            PlayerPrefs.SetInt("Player Score", theManager.mainScore);
-
-            if (index == 1)
-            {
-                SceneManager.LoadScene(levelToLoad1);
-            }
-            else if (index == 2)
-            {
-                SceneManager.LoadScene(levelToLoad2);
-            }
-            else if (index == 3)
-            {
-                SceneManager.LoadScene(levelToLoad3);
-            }
-            else if (index == 4)
-            {
-                SceneManager.LoadScene(levelToLoad4);
-            }
+            //PlayerPrefs.SetInt("Player Score", theManager.mainScore);
+            SceneManager.LoadScene(nextLevel);
         }
     }
 }
