@@ -21,6 +21,7 @@ public class BossSpoooderScript : MonoBehaviour
 
     public manager theManager;
     public characterMovement theCharacterMovement;
+    public BossPoint theBossPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class BossSpoooderScript : MonoBehaviour
         enemyRigid = GetComponent<Rigidbody2D>();
         theManager = FindObjectOfType<manager>();
         theCharacterMovement = FindObjectOfType<characterMovement>();
+        theBossPoint = FindObjectOfType<BossPoint>();
     }
 
     // Update is called once per frame
@@ -52,7 +54,7 @@ public class BossSpoooderScript : MonoBehaviour
 
         float distance = Mathf.Abs(enemyRigid.gameObject.transform.position.x - theCharacterMovement.thePlayer.transform.position.x);
 
-        if (distance <= 24 || seen)
+        if (theBossPoint.bossStarts || seen)
         {
             seen = true; 
 
