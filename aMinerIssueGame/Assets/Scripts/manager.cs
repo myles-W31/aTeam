@@ -8,6 +8,7 @@ public class manager : MonoBehaviour
 {
     public GameObject enemyExplosion;
     public GameObject demonExplosion;
+    public GameObject rollyExplosion;
     public GameObject playerExplosion;
     public GameObject spiderBossExplosion;
 

@@ -175,6 +175,8 @@ MonoBehaviour:
     type: 3}
   demonExplosion: {fileID: 4258094070691900354, guid: cc1c2a7f1cc5a52449fbefda91325145,
     type: 3}
+  rollyExplosion: {fileID: 4258094070691900354, guid: 8cb9e5fcf5d3ccd4ea312c52a1bce594,
+    type: 3}
   playerExplosion: {fileID: 603148997599374539, guid: 2dd0b7e023495554a965289332186541,
     type: 3}
   spiderBossExplosion: {fileID: 4258094070691900354, guid: 3492e5fcbd80c0b4f8f7d4976e3e78a1,

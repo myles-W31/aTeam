@@ -22,6 +22,7 @@ public class DemonEnemyScript : MonoBehaviour
     public GameObject fireball;
     public float fireballSpeed;
     public bool shot;
+    public GameObject fireballPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +47,7 @@ public class DemonEnemyScript : MonoBehaviour
         if (enemyHealth <= 0)
         {
             Destroy(theEnemy.gameObject);
-            Instantiate(theManager.demonExplosion, theEnemy.transform.position, theEnemy.transform.rotation);
+            Instantiate(theManager.demonExplosion, this.transform.position, this.transform.rotation);
         }
 
         distance = Mathf.Abs(enemyRigid.gameObject.transform.position.x - theCharacterMovement.thePlayer.transform.position.x);    
@@ -90,7 +91,7 @@ public class DemonEnemyScript : MonoBehaviour
     {
         if(shot)
         {
-            var cloneFireball = Instantiate(fireball, this.transform.position, this.transform.rotation);
+            var cloneFireball = Instantiate(fireball, fireballPoint.transform.position, this.transform.rotation);
             cloneFireball.GetComponent<Rigidbody2D>().velocity = (theCharacterMovement.thePlayer.transform.position - transform.position).normalized * fireballSpeed;
             shot = false;
             StartCoroutine(ExecuteAfterTime());

@@ -6,6 +6,7 @@ public class ProjectileAttack : MonoBehaviour
 {
     public enemyMovement theEnemyMovement;
     public DemonEnemyScript theDemonEnemyScript;
+    public RollyScript theRollyScript;
     public BossSpoooderScript theBossSpoooderScript;
     public manager theManager;
 
@@ -20,6 +21,7 @@ public class ProjectileAttack : MonoBehaviour
     {
         theEnemyMovement = FindObjectOfType<enemyMovement>();
         theDemonEnemyScript = FindObjectOfType<DemonEnemyScript>();
+        theRollyScript = FindObjectOfType<RollyScript>();
         theBossSpoooderScript = FindObjectOfType<BossSpoooderScript>();
         pickaxePoint1 = FindObjectOfType<PickaxePointScript>();
         theManager = FindObjectOfType<manager>();
@@ -55,6 +57,10 @@ public class ProjectileAttack : MonoBehaviour
             else if (collision.gameObject.GetComponent<DemonEnemyScript>())
             {
                 theDemonEnemyScript.HurtEnemyMethod(collision.GetComponent<DemonEnemyScript>(), 0.5f);
+            }
+            else if (collision.gameObject.GetComponent<RollyScript>())
+            {
+                theRollyScript.HurtEnemyMethod(collision.GetComponent<RollyScript>(), 0.5f);
             }
             else if (collision.gameObject.GetComponent<BossSpoooderScript>())
             {
