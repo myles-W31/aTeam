@@ -27,7 +27,7 @@ public class BossSpoooderScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxEnemyHealth = 1;
+        maxEnemyHealth = 8;
         enemyHealth = maxEnemyHealth;
         bossSpawn = this.transform.position;
 

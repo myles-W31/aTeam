@@ -219,7 +219,6 @@ public class characterMovement : MonoBehaviour
     {
         if (collision.tag == "Pickaxe" && canPickUpObject == true)
         {
-            Debug.Log("pick up");
             Destroy(collision.gameObject);
             canShoot = true;
             canDig = true;

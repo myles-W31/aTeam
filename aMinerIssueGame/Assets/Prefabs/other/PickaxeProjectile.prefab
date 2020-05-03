@@ -101,7 +101,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.25
 --- !u!50 &8383132708724228298
 Rigidbody2D:
   serializedVersion: 4
@@ -156,10 +156,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theEnemyMovement: {fileID: 0}
   theBossSpoooderScript: {fileID: 0}
+  theManager: {fileID: 0}
   theCharacterMovement: {fileID: 0}
   myAnim: {fileID: 8383132708724228297}
   isOnGroundRight: 0
   isOnGroundLeft: 0
+  pickaxePoint1: {fileID: 0}
 --- !u!58 &3993080687662042422
 CircleCollider2D:
   m_ObjectHideFlags: 0

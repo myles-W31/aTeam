@@ -39,6 +39,8 @@ public class manager : MonoBehaviour
     public bool isPaused = false;
     public GameObject pauseUI;
 
+    public SpriteRenderer theBossSprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -173,6 +175,12 @@ public class manager : MonoBehaviour
             theBossSpoooderScript.theEnemy.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
             theBossSpoooderScript.enemyRigid.velocity = Vector3.zero;
             theBossWall1.theBossWall.SetActive(false);
+
+            theBossSpoooderScript.enemyHealth = 8;
+            theCharacterMovement.canShoot = true;
+            theCharacterMovement.canDig = true;
+            theCharacterMovement.canPickUpObject = false;
+
         }
 
         theCharacterMovement.gameObject.SetActive(true);
@@ -210,5 +218,24 @@ public class manager : MonoBehaviour
         SceneManager.LoadScene(mainMenu);
     }
 
+    public void FlashRed(SpriteRenderer objectToHurt)
+    {
+        objectToHurt.color = Color.red;
 
+        StartCoroutine(ExecuteAfterTime(objectToHurt));
+    }
+
+    public void ResetColor(SpriteRenderer objectToHurt)
+    {
+        if (objectToHurt != null)
+        {
+            objectToHurt.color = theBossSprite.color;
+        }
+    }
+
+    IEnumerator ExecuteAfterTime(SpriteRenderer objectToAffect)
+    {
+        yield return new WaitForSeconds(0.25f);
+        ResetColor(objectToAffect);
+    }
 }

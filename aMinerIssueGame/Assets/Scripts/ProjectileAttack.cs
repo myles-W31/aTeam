@@ -6,12 +6,13 @@ public class ProjectileAttack : MonoBehaviour
 {
     public enemyMovement theEnemyMovement;
     public BossSpoooderScript theBossSpoooderScript;
+    public manager theManager;
 
     public characterMovement theCharacterMovement;
     public Animator myAnim;
     public bool isOnGroundRight;
     public bool isOnGroundLeft;
-    public GameObject pickaxePoint1;
+    public PickaxePointScript pickaxePoint1;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class ProjectileAttack : MonoBehaviour
         theEnemyMovement = FindObjectOfType<enemyMovement>();
         theBossSpoooderScript = FindObjectOfType<BossSpoooderScript>();
         pickaxePoint1 = FindObjectOfType<PickaxePointScript>();
+        theManager = FindObjectOfType<manager>();
 
         theCharacterMovement = FindObjectOfType<characterMovement>();
         isOnGroundLeft = false;
@@ -31,6 +33,12 @@ public class ProjectileAttack : MonoBehaviour
         //Destroy(gameObject, 0.5f);
         myAnim.SetBool("isOnGroundRight", isOnGroundRight);
         myAnim.SetBool("isOnGroundLeft", isOnGroundLeft);
+
+        if(theCharacterMovement.canShoot)
+        {
+            Debug.Log("destroy");
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,7 +53,9 @@ public class ProjectileAttack : MonoBehaviour
             else if (collision.gameObject.GetComponent<BossSpoooderScript>())
             {
                 theBossSpoooderScript.HurtEnemyMethod(collision.GetComponent<BossSpoooderScript>(), 0.5f);
-                this.gameObject.transform.position = pickaxePoint1.transform.position;
+                this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                this.gameObject.transform.position = pickaxePoint1.gameObject.transform.position;
+                theManager.FlashRed(collision.GetComponent<SpriteRenderer>());
             }
         }
         if (collision.tag == "Ground")
