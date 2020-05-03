@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            SceneManager.LoadScene("TestLevel1");
+            SceneManager.LoadScene("Level1");
         }
     }
 }

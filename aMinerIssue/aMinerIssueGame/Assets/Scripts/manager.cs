@@ -35,6 +35,9 @@ public class manager : MonoBehaviour
 
     public AudioSource bossMusic;
 
+    public bool isPaused = false;
+    public GameObject pauseUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,24 +53,38 @@ public class manager : MonoBehaviour
         attackTime = 0;
         currentScene = SceneManager.GetActiveScene();
 
+
+        isPaused = false;
+
+        /*
         //SpriteRenderer dirtdim = dirt.GetComponent<SpriteRenderer>();
         for (int i = 0; i<10;i++)
         {
             for(int j = 0; j < 10; j++)
             {
-                Vector3 pos = dirt.transform.position;
+                //Vector3 pos = dirt.transform.position;
                 //pos.x = dirtdim.size.x * i;
                 //pos.y = dirtdim.size.y * j;
-                Instantiate(dirt,pos, Quaternion.identity);
+                //Instantiate(dirt,pos, Quaternion.identity);
             }
         }
-        //mainScore = PlayerPrefs.GetInt("Player Score");
+        */
+
+        mainScore = PlayerPrefs.GetInt("Player Score");
+        mainScore = 0;
+        pointText.text = "Score: " + mainScore;
     }
 
     // Update is called once per frame
     void Update()
-    {        
-        if(attackTime > 0)
+    {
+        // Transistion from game to pause menu
+        if (!isPaused && Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+        }
+
+        if (attackTime > 0)
         {
             attackTime -= Time.deltaTime;
         }
@@ -81,6 +98,7 @@ public class manager : MonoBehaviour
             theCharacterMovement.canPickUpObject = false;
             attackCountdown = false;
         }
+
         /*if(theEnemyMovement.theEnemy != null)
         {
             if (theEnemyMovement.enemyHealth <= 0)
@@ -96,7 +114,7 @@ public class manager : MonoBehaviour
             theCharacterMovement.isBeingHeld = false;
             //theCharacterMovement.score = 0;
             mainScore = 0;
-            //pointText.text = "Score: " + mainScore;
+            pointText.text = "Score: " + mainScore;
         }
 
         if(currentScene.name == "BossLevel1" && theBossSpoooderScript.enemyHealth > 0)
@@ -107,14 +125,15 @@ public class manager : MonoBehaviour
         {
             //bossMusic.Stop();
         }
-        //PlayerPrefs.SetInt("Player Score", mainScore);
+
+        PlayerPrefs.SetInt("Player Score", mainScore);
     }
 
     public void AddCoins(int pointsToAdd)
     {
         mainScore += pointsToAdd;
 
-        //pointText.text = "Score: " + mainScore;
+        pointText.text = "Score: " + mainScore;
     }
 
     public void Respawn()
@@ -156,11 +175,39 @@ public class manager : MonoBehaviour
         }
 
         theCharacterMovement.gameObject.SetActive(true);
-        //SceneManager.LoadScene(mainMenu);
     }
 
     public void HurtPlayer(int damageToTake)
     {
             theCharacterMovement.playerHealth -= damageToTake;
     }
+
+    public void Pause()
+    {
+        isPaused = true;
+
+        Time.timeScale = 0.0f;
+        //music.volume = 0.1f;
+
+        pauseUI.SetActive(true);
+    }
+
+    public void Unpause()
+    {
+        isPaused = false;
+
+        Time.timeScale = 1.0f;
+        //music.volume = 0.1f;
+
+        pauseUI.SetActive(false);
+    }
+
+    public void Exit()
+    {
+        Unpause();
+        mainScore = 0;
+        SceneManager.LoadScene(mainMenu);
+    }
+
+
 }
