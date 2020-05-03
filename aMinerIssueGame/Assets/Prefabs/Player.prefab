@@ -149,6 +149,9 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  whatIsSpecialGround:
+    serializedVersion: 2
+    m_Bits: 32768
   isGrounded: 0
   facingRight: 0
   facingLeft: 0
@@ -165,6 +168,7 @@ MonoBehaviour:
   isBeingHeld: 0
   isWalking: 0
   myAnim: {fileID: 7471571469967084963}
+  score: 0
 --- !u!50 &503131696
 Rigidbody2D:
   serializedVersion: 4

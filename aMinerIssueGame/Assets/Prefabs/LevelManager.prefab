@@ -41,7 +41,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6842e8b45a951404895bda223ab43f3c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e6583516e66d9de4bb1dbf7dd4126f3d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.25
   m_Pitch: 1
@@ -173,6 +173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyExplosion: {fileID: 4258094070691900354, guid: 18db1f791eedc7241856010995f3425b,
     type: 3}
+  demonExplosion: {fileID: 4258094070691900354, guid: cc1c2a7f1cc5a52449fbefda91325145,
+    type: 3}
   playerExplosion: {fileID: 603148997599374539, guid: 2dd0b7e023495554a965289332186541,
     type: 3}
   spiderBossExplosion: {fileID: 4258094070691900354, guid: 3492e5fcbd80c0b4f8f7d4976e3e78a1,
@@ -195,3 +197,7 @@ MonoBehaviour:
   currentScene:
     m_Handle: 0
   bossMusic: {fileID: 560326984}
+  isPaused: 0
+  pauseUI: {fileID: 0}
+  theBossSprite: {fileID: 8193210291365076637, guid: 93781198f0b6a0240b5d594a0e7281b4,
+    type: 3}

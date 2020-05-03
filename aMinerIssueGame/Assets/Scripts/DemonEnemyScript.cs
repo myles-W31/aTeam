@@ -19,17 +19,21 @@ public class DemonEnemyScript : MonoBehaviour
     public manager theManager;
     public characterMovement theCharacterMovement;
     public bool enraged;
+    public GameObject fireball;
+    public float fireballSpeed;
+    public bool shot;
 
     // Start is called before the first frame update
     void Start()
     {
-        maxEnemyHealth = 2;
+        maxEnemyHealth = 1;
         enemyHealth = maxEnemyHealth;
 
         facingRight = false;
         facingLeft = true;
         seen = false;
         enraged = false;
+        shot = true;
 
         enemyRigid = GetComponent<Rigidbody2D>();
         theManager = FindObjectOfType<manager>();
@@ -62,9 +66,14 @@ public class DemonEnemyScript : MonoBehaviour
         {
             enraged = false;
         }
+
+        if(enraged)
+        {
+            ShootFireball();
+        }
     }
 
-    public void HurtEnemyMethod(enemyMovement objectToHurt, float damageToTake)
+    public void HurtEnemyMethod(DemonEnemyScript objectToHurt, float damageToTake)
     {
         objectToHurt.enemyHealth -= damageToTake;
     }
@@ -75,5 +84,23 @@ public class DemonEnemyScript : MonoBehaviour
         {
             
         }
+    }
+
+    public void ShootFireball()
+    {
+        if(shot)
+        {
+            var cloneFireball = Instantiate(fireball, this.transform.position, this.transform.rotation);
+            cloneFireball.GetComponent<Rigidbody2D>().velocity = (theCharacterMovement.thePlayer.transform.position - transform.position).normalized * fireballSpeed;
+            shot = false;
+            StartCoroutine(ExecuteAfterTime());
+        }
+    }
+
+    IEnumerator ExecuteAfterTime()
+    {
+        yield return new WaitForSeconds(1f);
+        ShootFireball();
+        shot = true;
     }
 }
