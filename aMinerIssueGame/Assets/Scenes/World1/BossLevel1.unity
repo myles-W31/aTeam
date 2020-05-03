@@ -21701,13 +21701,15 @@ GameObject:
   - component: {fileID: 2101831027}
   - component: {fileID: 2101831026}
   - component: {fileID: 2101831025}
+  - component: {fileID: 2101831030}
+  - component: {fileID: 2101831031}
   m_Layer: 0
   m_Name: DemonEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2101831024
 Transform:
   m_ObjectHideFlags: 0
@@ -21716,7 +21718,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101831023}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -16.89, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 388268205}
@@ -21857,6 +21859,46 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2101831030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101831023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeec3a45544c8b34d824c08f926e6ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theCharacterMovement: {fileID: 0}
+  facingLeft: 0
+  facingRight: 0
+  xScale: 3
+  yScale: 3
+--- !u!114 &2101831031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101831023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c6283fb00fc0341b31c3d1c06b984e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theEnemy: {fileID: 0}
+  enemyHealth: 3
+  facingRight: 0
+  facingLeft: 0
+  seen: 0
+  distance: 0
+  enemyRigid: {fileID: 0}
+  moveSpeed: 4
+  theManager: {fileID: 0}
+  theCharacterMovement: {fileID: 0}
+  enraged: 0
 --- !u!4 &2103025086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7122287344376028237, guid: b7051174cb40dbd4cb3f481d149681f6,

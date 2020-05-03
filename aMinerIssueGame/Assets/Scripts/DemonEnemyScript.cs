@@ -18,6 +18,7 @@ public class DemonEnemyScript : MonoBehaviour
 
     public manager theManager;
     public characterMovement theCharacterMovement;
+    public bool enraged;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class DemonEnemyScript : MonoBehaviour
         facingRight = false;
         facingLeft = true;
         seen = false;
+        enraged = false;
 
         enemyRigid = GetComponent<Rigidbody2D>();
         theManager = FindObjectOfType<manager>();
@@ -45,14 +47,20 @@ public class DemonEnemyScript : MonoBehaviour
 
         distance = Mathf.Abs(enemyRigid.gameObject.transform.position.x - theCharacterMovement.thePlayer.transform.position.x);    
         
-        if(distance <= 8 && distance >= 4)
+        if(distance <= 12 && distance >= 4)
         {
             float step = moveSpeed * Time.deltaTime;
             this.gameObject.transform.position = Vector2.MoveTowards(transform.position, theCharacterMovement.thePlayer.transform.position, step);
+            Debug.Log("chase");
+            enraged = true;
         }
         else if (distance < 4)
         {
-
+            enraged = true;
+        }
+        else
+        {
+            enraged = false;
         }
     }
 
