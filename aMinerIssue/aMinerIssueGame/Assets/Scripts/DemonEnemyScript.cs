@@ -45,10 +45,14 @@ public class DemonEnemyScript : MonoBehaviour
 
         distance = Mathf.Abs(enemyRigid.gameObject.transform.position.x - theCharacterMovement.thePlayer.transform.position.x);    
         
-        if(distance <= 8)
+        if(distance <= 8 && distance >= 4)
         {
             float step = moveSpeed * Time.deltaTime;
             this.gameObject.transform.position = Vector2.MoveTowards(transform.position, theCharacterMovement.thePlayer.transform.position, step);
+        }
+        else if (distance < 4)
+        {
+
         }
     }
 
