@@ -28,6 +28,7 @@ public class characterMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask whatIsGround;
+    public LayerMask whatIsSpecialGround;
     public bool isGrounded;
 
     public bool facingRight;
@@ -174,7 +175,8 @@ public class characterMovement : MonoBehaviour
         }
 
         // check if player is on ground constantly
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround | whatIsSpecialGround);
+        //isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsSpecialGround);
 
         myAnim.SetBool("canShoot", canShoot);
         myAnim.SetBool("isWalking", isWalking);

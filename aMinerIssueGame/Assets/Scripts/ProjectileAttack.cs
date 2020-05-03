@@ -11,12 +11,14 @@ public class ProjectileAttack : MonoBehaviour
     public Animator myAnim;
     public bool isOnGroundRight;
     public bool isOnGroundLeft;
+    public GameObject pickaxePoint1;
 
     // Start is called before the first frame update
     void Start()
     {
         theEnemyMovement = FindObjectOfType<enemyMovement>();
         theBossSpoooderScript = FindObjectOfType<BossSpoooderScript>();
+        pickaxePoint1 = FindObjectOfType<PickaxePointScript>();
 
         theCharacterMovement = FindObjectOfType<characterMovement>();
         isOnGroundLeft = false;
@@ -43,6 +45,7 @@ public class ProjectileAttack : MonoBehaviour
             else if (collision.gameObject.GetComponent<BossSpoooderScript>())
             {
                 theBossSpoooderScript.HurtEnemyMethod(collision.GetComponent<BossSpoooderScript>(), 0.5f);
+                this.gameObject.transform.position = pickaxePoint1.transform.position;
             }
         }
         if (collision.tag == "Ground")
