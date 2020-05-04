@@ -8,6 +8,7 @@ public class ProjectileAttack : MonoBehaviour
     public DemonEnemyScript theDemonEnemyScript;
     public RollyScript theRollyScript;
     public BossSpoooderScript theBossSpoooderScript;
+    public BossRollyScript theBossRollyScript;
     public manager theManager;
 
     public characterMovement theCharacterMovement;
@@ -23,6 +24,7 @@ public class ProjectileAttack : MonoBehaviour
         theDemonEnemyScript = FindObjectOfType<DemonEnemyScript>();
         theRollyScript = FindObjectOfType<RollyScript>();
         theBossSpoooderScript = FindObjectOfType<BossSpoooderScript>();
+        theBossRollyScript = FindObjectOfType<BossRollyScript>();
         pickaxePoint1 = FindObjectOfType<PickaxePointScript>();
         theManager = FindObjectOfType<manager>();
 
@@ -65,6 +67,13 @@ public class ProjectileAttack : MonoBehaviour
             else if (collision.gameObject.GetComponent<BossSpoooderScript>())
             {
                 theBossSpoooderScript.HurtEnemyMethod(collision.GetComponent<BossSpoooderScript>(), 0.5f);
+                this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                this.gameObject.transform.position = pickaxePoint1.gameObject.transform.position;
+                theManager.FlashRed(collision.GetComponent<SpriteRenderer>());
+            }
+            else if (collision.gameObject.GetComponent<BossRollyScript>())
+            {
+                theBossRollyScript.HurtEnemyMethod(collision.GetComponent<BossRollyScript>(), 0.5f);
                 this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
                 this.gameObject.transform.position = pickaxePoint1.gameObject.transform.position;
                 theManager.FlashRed(collision.GetComponent<SpriteRenderer>());

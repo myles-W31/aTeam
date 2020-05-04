@@ -27,7 +27,7 @@ public class BossRollyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxEnemyHealth = 8;
+        maxEnemyHealth = 12;
         enemyHealth = maxEnemyHealth;
         bossSpawn = this.transform.position;
 
@@ -69,7 +69,7 @@ public class BossRollyScript : MonoBehaviour
                 canTurnRight = false;
 
                 enemyRigid.velocity = new Vector3(5f, enemyRigid.velocity.y, 0f);
-                transform.localScale = new Vector3(-1f, 1f, 1f);
+                transform.localScale = new Vector3(.2f, .2f, 1f);
             }
             else if (movingLeft)
             {
@@ -80,12 +80,12 @@ public class BossRollyScript : MonoBehaviour
                 canTurnRight = true;
 
                 enemyRigid.velocity = new Vector3(-5f, enemyRigid.velocity.y, 0f);
-                transform.localScale = new Vector3(1f, 1f, 1f);
+                transform.localScale = new Vector3(-.2f, .2f, 1f);
             }
         }
     }
 
-    public void HurtEnemyMethod(BossSpoooderScript objectToHurt, float damageToTake)
+    public void HurtEnemyMethod(BossRollyScript objectToHurt, float damageToTake)
     {
         objectToHurt.enemyHealth -= damageToTake;
     }

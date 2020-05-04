@@ -17,6 +17,7 @@ public class manager : MonoBehaviour
     public MovePickaxe theMovePickaxe;
     public BossWall1 theBossWall1;
     public BossSpoooderScript theBossSpoooderScript;
+    public BossRollyScript theBossRollyScript;
     public BossPoint theBossPoint;
 
     public bool respawning;
@@ -41,6 +42,7 @@ public class manager : MonoBehaviour
     public GameObject pauseUI;
 
     public SpriteRenderer theBossSprite;
+    public SpriteRenderer theRollyBossSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,7 @@ public class manager : MonoBehaviour
         theMovePickaxe = FindObjectOfType<MovePickaxe>();
         theBossWall1 = FindObjectOfType<BossWall1>();
         theBossSpoooderScript = FindObjectOfType<BossSpoooderScript>();
+        theBossRollyScript = FindObjectOfType<BossRollyScript>();
         theBossPoint = FindObjectOfType<BossPoint>();
 
         attackCountdown = false;
@@ -169,7 +172,6 @@ public class manager : MonoBehaviour
 
         if (currentScene.name == "BossLevel1")
         {
-            Debug.Log("hey");
             theBossPoint.bossStarts = false;
             theBossSpoooderScript.seen = false;
             theBossSpoooderScript.theEnemy.gameObject.transform.position = theBossSpoooderScript.bossSpawn;
@@ -181,7 +183,20 @@ public class manager : MonoBehaviour
             theCharacterMovement.canShoot = true;
             theCharacterMovement.canDig = true;
             theCharacterMovement.canPickUpObject = false;
+        }
+        if (currentScene.name == "BossLevel2")
+        {
+            theBossPoint.bossStarts = false;
+            theBossRollyScript.seen = false;
+            theBossRollyScript.theEnemy.gameObject.transform.position = theBossRollyScript.bossSpawn;
+            theBossRollyScript.theEnemy.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+            theBossRollyScript.enemyRigid.velocity = Vector3.zero;
+            theBossWall1.theBossWall.SetActive(false);
 
+            theBossRollyScript.enemyHealth = 8;
+            theCharacterMovement.canShoot = true;
+            theCharacterMovement.canDig = true;
+            theCharacterMovement.canPickUpObject = false;
         }
 
         theCharacterMovement.gameObject.SetActive(true);

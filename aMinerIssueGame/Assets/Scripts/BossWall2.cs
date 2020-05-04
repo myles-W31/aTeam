@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class BossWall2 : MonoBehaviour
 {
     public BossSpoooderScript theBossSpoooderScript;
+    public BossRollyScript theBossRollyScript;
     public GameObject theBossWall;
     public Scene currentScene;
 
@@ -13,6 +14,7 @@ public class BossWall2 : MonoBehaviour
     void Start()
     {
         theBossSpoooderScript = FindObjectOfType<BossSpoooderScript>();
+        theBossRollyScript = FindObjectOfType<BossRollyScript>();
 
         theBossWall.SetActive(true);
         currentScene = SceneManager.GetActiveScene();
@@ -30,7 +32,7 @@ public class BossWall2 : MonoBehaviour
         }
         else if (currentScene.name == "BossLevel2")
         {
-            if (theBossSpoooderScript.enemyHealth <= 0)
+            if (theBossRollyScript.enemyHealth <= 0)
             {
                 theBossWall.SetActive(false);
             }
