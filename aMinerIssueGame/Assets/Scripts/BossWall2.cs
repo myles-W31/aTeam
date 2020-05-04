@@ -6,15 +6,20 @@ using UnityEngine.SceneManagement;
 public class BossWall2 : MonoBehaviour
 {
     public BossSpoooderScript theBossSpoooderScript;
-    public BossRollyScript theBossRollyScript;
+    public BossRollyScript theBossRollyScript1;
+    public BossRollyScript theBossRollyScript2;
+    public BossRollyScript theBossRollyScript3;
+    public BossRollyScript theBossRollyScript4;
     public GameObject theBossWall;
     public Scene currentScene;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         theBossSpoooderScript = FindObjectOfType<BossSpoooderScript>();
-        theBossRollyScript = FindObjectOfType<BossRollyScript>();
+        //theBossRollyScript = FindObjectOfType<BossRollyScript>();
 
         theBossWall.SetActive(true);
         currentScene = SceneManager.GetActiveScene();
@@ -32,7 +37,10 @@ public class BossWall2 : MonoBehaviour
         }
         else if (currentScene.name == "BossLevel2")
         {
-            if (theBossRollyScript.enemyHealth <= 0)
+            if (theBossRollyScript1.enemyHealth <= 0 &&
+                theBossRollyScript2.enemyHealth <= 0 &&
+                theBossRollyScript3.enemyHealth <= 0 &&
+                theBossRollyScript4.enemyHealth <= 0)
             {
                 theBossWall.SetActive(false);
             }

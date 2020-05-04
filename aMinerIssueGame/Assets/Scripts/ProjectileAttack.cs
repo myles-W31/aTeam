@@ -73,7 +73,7 @@ public class ProjectileAttack : MonoBehaviour
             }
             else if (collision.gameObject.GetComponent<BossRollyScript>())
             {
-                theBossRollyScript.HurtEnemyMethod(collision.GetComponent<BossRollyScript>(), 0.5f);
+                theBossRollyScript.HurtEnemyMethod(collision.GetComponent<BossRollyScript>(), 1f);
                 this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
                 this.gameObject.transform.position = pickaxePoint1.gameObject.transform.position;
                 theManager.FlashRed(collision.GetComponent<SpriteRenderer>());

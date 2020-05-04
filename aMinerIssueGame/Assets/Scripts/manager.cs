@@ -19,6 +19,7 @@ public class manager : MonoBehaviour
     public BossSpoooderScript theBossSpoooderScript;
     public BossRollyScript theBossRollyScript;
     public BossPoint theBossPoint;
+    public BossWall2 theBossWall2;
 
     public bool respawning;
     public bool respawnCoActive;
@@ -55,6 +56,7 @@ public class manager : MonoBehaviour
         theBossSpoooderScript = FindObjectOfType<BossSpoooderScript>();
         theBossRollyScript = FindObjectOfType<BossRollyScript>();
         theBossPoint = FindObjectOfType<BossPoint>();
+        theBossWall2 = FindObjectOfType<BossWall2>();
 
         attackCountdown = false;
         attackTime = 0;
@@ -188,12 +190,15 @@ public class manager : MonoBehaviour
         {
             theBossPoint.bossStarts = false;
             theBossRollyScript.seen = false;
-            theBossRollyScript.theEnemy.gameObject.transform.position = theBossRollyScript.bossSpawn;
-            theBossRollyScript.theEnemy.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            theBossRollyScript.enemyRigid.velocity = Vector3.zero;
+            //theBossRollyScript.theEnemy.gameObject.transform.position = theBossRollyScript.bossSpawn;
+            //theBossRollyScript.theEnemy.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+            //theBossRollyScript.enemyRigid.velocity = Vector3.zero;
             theBossWall1.theBossWall.SetActive(false);
 
-            theBossRollyScript.enemyHealth = 8;
+            //theBossWall2.theBossRollyScript1.enemyHealth = 3;
+            //theBossWall2.theBossRollyScript2.enemyHealth = 3;
+            //theBossWall2.theBossRollyScript3.enemyHealth = 3;
+            //theBossWall2.theBossRollyScript4.enemyHealth = 3;
             theCharacterMovement.canShoot = true;
             theCharacterMovement.canDig = true;
             theCharacterMovement.canPickUpObject = false;
@@ -245,7 +250,14 @@ public class manager : MonoBehaviour
     {
         if (objectToHurt != null)
         {
-            objectToHurt.color = theBossSprite.color;
+            if (currentScene.name == "BossLevel1")
+            {
+                objectToHurt.color = theBossSprite.color;
+            }
+            else if(currentScene.name == "BossLevel2")
+            {
+                objectToHurt.color = theRollyBossSprite.color;
+            }
         }
     }
 

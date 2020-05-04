@@ -23,11 +23,14 @@ public class BossRollyScript : MonoBehaviour
     public manager theManager;
     public characterMovement theCharacterMovement;
     public BossPoint theBossPoint;
+    public GameObject bossPoint1;
+    public GameObject bossPoint2;
+    public GameObject bossPoint3;
 
     // Start is called before the first frame update
     void Start()
     {
-        maxEnemyHealth = 12;
+        maxEnemyHealth = 3;
         enemyHealth = maxEnemyHealth;
         bossSpawn = this.transform.position;
 
@@ -51,7 +54,7 @@ public class BossRollyScript : MonoBehaviour
         if (enemyHealth <= 0)
         {
             Destroy(theEnemy.gameObject);
-            Instantiate(theManager.spiderBossExplosion, theEnemy.transform.position, theEnemy.transform.rotation);
+            Instantiate(theManager.spiderBossExplosion, this.transform.position, theEnemy.transform.rotation);
         }
 
         float distance = Mathf.Abs(enemyRigid.gameObject.transform.position.x - theCharacterMovement.thePlayer.transform.position.x);
