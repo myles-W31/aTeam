@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossWall2 : MonoBehaviour
 {
     public BossSpoooderScript theBossSpoooderScript;
     public GameObject theBossWall;
+    public Scene currentScene;
 
     // Start is called before the first frame update
     void Start()
@@ -13,14 +15,25 @@ public class BossWall2 : MonoBehaviour
         theBossSpoooderScript = FindObjectOfType<BossSpoooderScript>();
 
         theBossWall.SetActive(true);
+        currentScene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (theBossSpoooderScript.enemyHealth <= 0)
+        if (currentScene.name == "BossLevel1")
         {
-            theBossWall.SetActive(false);
+            if (theBossSpoooderScript.enemyHealth <= 0)
+            {
+                theBossWall.SetActive(false);
+            }
+        }
+        else if (currentScene.name == "BossLevel2")
+        {
+            if (theBossSpoooderScript.enemyHealth <= 0)
+            {
+                theBossWall.SetActive(false);
+            }
         }
     }
 }
